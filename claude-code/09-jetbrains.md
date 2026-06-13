@@ -58,7 +58,7 @@ JetBrains 是一整个家族，不是单个软件。**好消息是：Claude Code
 | **GoLand** | Go |
 | **Android Studio** | 安卓开发（基于 IntelliJ） |
 
-官方原文用的是「**包括但不限于**」——名单外的 JetBrains IDE（RubyMine、CLion、Rider 等）大概率也能用，但官方没背书，能装上就用、出问题以「未明确支持」对待。
+官方说法是「**适用于大多数** JetBrains IDE」——名单外的 JetBrains IDE（RubyMine、CLion、Rider 等）大概率也能用，但官方没背书，能装上就用、出问题以「未明确支持」对待。
 
 **类比：同一品牌的不同车型，共用一套车机系统。** IntelliJ、PyCharm、WebStorm 就像同厂家的轿车、SUV、跑车，定位不同但**底层是同一个平台**（都构建在 IntelliJ Platform 上）。所以一个插件通吃，**这篇里所有操作步骤，不管你用 IntelliJ 还是 GoLand，菜单路径都一致**。下面演示用 PyCharm。
 

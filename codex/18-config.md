@@ -130,7 +130,7 @@ flowchart TB
 
 为啥拦？想想看：要是一个陌生仓库的 `.codex/config.toml` 能偷偷改你连的模型服务地址、改你的认证方式、塞个通知命令在你机器上跑——那就太危险了。所以官方把这类「会动到机器级安全」的键，**锁死在只能写用户级**。官方原文点了名：
 
-> Codex ignores `openai_base_url`, `chatgpt_base_url`, `apps_mcp_product_sku`, `model_provider`, `model_providers`, `notify`, `profile`, `profiles`, `experimental_realtime_ws_base_url`, and `otel` when they appear in a project-local `.codex/config.toml`.
+> Codex ignores `openai_base_url`, `chatgpt_base_url`, `apps_mcp_product_sku`, `model_provider`, `model_providers`, `notify`, `profile`, `profiles`, `experimental_realtime_ws_base_url`, and `otel` when they appear in a project-local `.codex/config.toml`.（当 `openai_base_url`、`chatgpt_base_url`、`apps_mcp_product_sku`、`model_provider`、`model_providers`、`notify`、`profile`、`profiles`、`experimental_realtime_ws_base_url` 和 `otel` 出现在项目本地的 `.codex/config.toml` 里时，Codex 会忽略它们。）
 
 翻成大白话，这些键写进项目级会被忽略，得放用户级：
 
@@ -156,11 +156,13 @@ flowchart TB
 |--------|--------|---------------------|---------|
 | `model` | 默认用哪个模型 | 跟随 Codex 内置默认 | `model = "gpt-5.5"` |
 | `approval_policy` | 啥时候停下来问你 | `on-request` | `approval_policy = "on-request"` |
-| `sandbox_mode` | 能动多大（文件 / 网络） | `workspace-write`（裸跑走 Auto 预设；`read-only` 是显式收紧的选项） | `sandbox_mode = "workspace-write"` |
+| `sandbox_mode` | 能动多大（文件 / 网络） | `read-only`（见下注） | `sandbox_mode = "workspace-write"` |
 | `model_reasoning_effort` | 推理使多大劲 | 跟随模型 / 预设 | `model_reasoning_effort = "high"` |
 | `web_search` | 联网搜索模式 | `cached`（缓存） | `web_search = "live"` |
 | `personality` | 沟通风格 | `friendly`（示例值） | `personality = "pragmatic"` |
 | `file_opener` | 引用文件点击用哪个编辑器打开 | `vscode` | `file_opener = "cursor"` |
+
+> **关于 `sandbox_mode` 默认值的一点澄清**：`config.toml` 本身的内置默认是 `read-only`（你不写这个键、也不带任何命令行参数时的兜底）。但你直接裸跑 `codex` 不会停在 `read-only`——它走的是 Auto 预设，**在 git 仓库里实际按 `workspace-write` 运行**（非 git 目录则保持 `read-only`）。这俩说的是不同语境：前者是「配置文件没写时的字面默认」，后者是「Auto 预设的运行时实际行为」，别混。
 
 逐个说几句你最该知道的细节：
 
@@ -409,4 +411,4 @@ codex --profile quick
 
 ---
 
-下一篇 **19「记忆系统 Chronicle」**——你刚在 `[features]` 里见过一个默认关着的 `memories` 开关，还记得吗？下一篇就专门讲它：**怎么让 Codex 把你的习惯、项目的脉络「记住」**，从每次都像新来的，变成跟你跨会话的老搭档。留个小思考：上一篇它长出了「看屏幕的眼睛」，这一篇它要长出「记得住的脑子」——一个能看、又能记的助手，跟你现在用的，差的是哪一截？
+下一篇 **19「记忆系统（Memories 与 Chronicle）」**——你刚在 `[features]` 里见过一个默认关着的 `memories` 开关，还记得吗？下一篇就专门讲它：**怎么让 Codex 把你的习惯、项目的脉络「记住」**，从每次都像新来的，变成跟你跨会话的老搭档。留个小思考：上一篇它长出了「看屏幕的眼睛」，这一篇它要长出「记得住的脑子」——一个能看、又能记的助手，跟你现在用的，差的是哪一截？

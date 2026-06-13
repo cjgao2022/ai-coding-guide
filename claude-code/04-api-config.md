@@ -4,7 +4,7 @@
 
 2026 年 6 月，Claude Code 官方文档里列了整整 **6 种身份验证方式**，从订阅登录到云厂商凭证，优先级一层压一层。
 
-这里有个很常见的坑。假设机器上早年 export 过一个 `ANTHROPIC_API_KEY`，后来买了 Max 订阅、`/login` 登录得好好的，结果某天账单突然开始扣 API 的钱——明明以为自己在用订阅额度。查下去才搞明白：**只要环境里有 API key，它的优先级就压过订阅**。
+这里有个很常见的坑，我自己就栽过。我那会儿图省事，早年在 `.zshrc` 里 export 过一个 `ANTHROPIC_API_KEY`，后来买了 Max 订阅、`/login` 登录得好好的，结果某天翻 Console 账单，发现 API 这边在持续扣钱——明明以为自己一直在用订阅额度。查了半天才搞明白：**只要环境里有 API key，它的优先级就压过订阅**。
 
 说白了，「登进去了」不等于「用对了身份」。这一篇就把这件事讲透。
 
@@ -72,7 +72,7 @@ claude
 | **Linux** | `~/.claude/.credentials.json`（权限 `0600`） |
 | **Windows** | `%USERPROFILE%\.claude\.credentials.json`（继承用户目录权限） |
 
-这些都是 Claude Code 通过 `/login` / `/logout` 自动管的，**你不用手动碰**。有人在 Mac 上找 `.credentials.json` 死活找不到，原因就在这——macOS 根本没把它放成文件，而是塞进了 Keychain。
+这些都是 Claude Code 通过 `/login` / `/logout` 自动管的，**你不用手动碰**。我自己在 Mac 上排查登录问题时，照着 Linux 的路子去翻 `~/.claude/.credentials.json`，结果死活找不到，一度怀疑没登录成功——原因就在这：macOS 根本没把它放成文件，而是塞进了 Keychain。
 
 > 💡 一句话总结：订阅用户**「跑 `claude` → 浏览器登录」就齐活**，凭证 Claude Code 自动存好，别手动去翻。
 

@@ -2,11 +2,11 @@
 
 > 📚 **系列导航**：上一篇 [21 安全与风险边界] 帮你想清楚「什么时候该信任 AI 碰你的代码和系统」。这一篇换个方向——**给 Claude 接上外部世界**。它默认只能摸你本地的文件和命令行，碰不到你的数据库、Jira、Figma。MCP，就是那个让它一次接上一堆外部服务的统一对接口。
 
-装第一个 MCP server 时，很容易对着终端的报错折腾快一个小时。
+我装第一个 MCP server 那会儿，对着终端的报错折腾了快一个小时。
 
-比如装一个连数据库的 server，从某个仓库的 README 里抄了条命令，大概长这样：`claude mcp add db -- npx server --transport stdio`。敲下去，连不上。以为是网络，又以为是包没装好，删了重装好几遍，`npx` 把那个包反复下载，进度条来回跑——**就是连不上**。
+当时想接一个连数据库的 server，从某个仓库的 README 里抄了条命令，大概长这样：`claude mcp add db -- npx server --transport stdio`。敲下去，连不上。我先怀疑是网络，又怀疑是包没装好，删了重装好几遍，`npx` 把那个包反复下载，进度条来回跑——**就是连不上**。
 
-翻官方文档才会发现，是参数的位置摆错了。官方写得明明白白：**所有选项（`--transport`、`--env`、`--scope`）必须在服务器名字「之前」，`--`（双破折号）之后跟的才是启动 server 的命令**。上面那条命令里 `--transport stdio` 跑到了 `--` 后面，被当成了传给 server 的参数，自然不认。改成 `claude mcp add --transport stdio db -- npx server`，秒连。
+后来翻官方文档才发现，是参数的位置摆错了。官方写得明明白白：**所有选项（`--transport`、`--env`、`--scope`）必须在服务器名字「之前」，`--`（双破折号）之后跟的才是启动 server 的命令**。上面那条命令里 `--transport stdio` 跑到了 `--` 后面，被当成了传给 server 的参数，自然不认。改成 `claude mcp add --transport stdio db -- npx server`，秒连。
 
 说这个坑是想让你少走那一个小时弯路：**MCP 本身不难，难的全是这些「位置」「作用域」「要不要批准」的细节**。今天把这些坑一个个填平，最后带你亲手跑通一个真实 server。
 
@@ -142,7 +142,7 @@ claude mcp add --scope user --transport http sentry https://mcp.sentry.dev/mcp
 claude mcp add --scope project --transport http github https://api.githubcopilot.com/mcp/
 ```
 
-一个实用的习惯：**像 Sentry、GitHub 这种个人天天用的，一律 `user`**——只在第一个项目里加一次，后面再开新项目自动就在，省得重复配。**只有「这个 server 是这个项目专属的、还得让协作者也用上」时，才用 `project` 写进 `.mcp.json`**。
+我自己用下来攒了个习惯：**像 Sentry、GitHub 这种个人天天用的，一律 `user`**——只在第一个项目里加一次，后面再开新项目自动就在，省得重复配。一开始我图省事全用默认的 `local`，结果换个项目又得重加一遍，烦了几次才反应过来该上 `user`。**只有「这个 server 是这个项目专属的、还得让协作者也用上」时，我才用 `project` 写进 `.mcp.json`**。
 
 ### 也可以直接写 `.mcp.json`
 
