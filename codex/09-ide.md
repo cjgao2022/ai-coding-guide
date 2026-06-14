@@ -54,6 +54,8 @@
 **方式一：扩展市场搜（最稳，但要搜对名字）**
 
 在编辑器里按 `Cmd+Shift+X`（Mac）或 `Ctrl+Shift+X`（Windows / Linux）打开扩展视图。**这里是全篇第一个坑**：很多人顺手搜 `Codex`，结果跳出一堆第三方小插件，就是不见官方那条。原因是——**官方扩展的 ID 是 `openai.chatgpt`，发布者（publisher）是 OpenAI**。搜 `Codex` 或 `ChatGPT` 都行，但认准发布者是 **OpenAI** 的那条再点安装，别装成仿冒的。
+比如 VS code 中搜 codex：
+![[extension-marketplace.png]]
 
 **方式二：点链接直装**
 
