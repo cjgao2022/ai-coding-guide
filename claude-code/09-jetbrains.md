@@ -111,12 +111,6 @@ irm https://claude.ai/install.ps1 | iex
 5. 点 **Install（安装）**
 6. **装完务必重启 IDE**
 
-![PyCharm 插件市场搜 Claude Code，认准 Anthropic PBC 官方那条点安装](assets/09-jetbrains/placeholder-install.png)
-
-> 📷 **占位图**：暂用菜鸟教程的真机截图占位（来源 runoob.com），**发布前务必替换为我们自己的真机截图**。
-
-上图就是这一步：在 **Plugins → Marketplace** 搜 `Claude Code`，搜索结果第一条、发布者是 **Anthropic PBC** 的「Claude Code \[Beta]」才是官方（下面 CC GUI、Claude Code with GUI 那些名字相似的都是第三方），点右侧绿色「安装」装上，装完记得重启 IDE。
-
 **方式二：去插件市场官网装**
 
 直接访问 [JetBrains 插件市场的 Claude Code 页面](https://plugins.jetbrains.com/plugin/27310-claude-code-beta-)，按页面指引安装。
@@ -252,11 +246,9 @@ claude
 - **启用 Option+Enter 多行输入**（仅 macOS）：开启后提示框里 `Option+Enter` 插入换行。**Option 键被意外捕获、影响打字就关掉它**，改完需重启终端。
 - **启用自动更新**：自动检查并安装插件更新，重启时应用。
 
-这几项长这样——下图是 JetBrains 设置里 **Tools → Claude Code \[Beta]** 的真实面板：最上面是 `Claude command` 路径（排查「命令未找到」就看它），下面依次是抑制通知的开关、Option+Enter 多行输入、自动更新勾选项。
+这几项里**最该记的是最上面那行 `Claude command` 路径**——点 Claude 图标报「command not found」，十有八九就是它要配。
 
-![JetBrains 设置 → 工具 → Claude Code \[Beta] 配置面板：Claude command 路径在最上，下面是各勾选项](assets/09-jetbrains/placeholder-settings.png)
 
-> 📷 **占位图**：暂用菜鸟教程的真机截图占位（来源 runoob.com），**发布前务必替换为我们自己的真机截图**。
 
 > 💡 WSL 用户特别注意：把 Claude 命令设成 `wsl -d Ubuntu -- bash -lic "claude"`（把 `Ubuntu` 换成你的 WSL 发行版名）。
 
