@@ -1,11 +1,12 @@
 # AI 编程（Claude Code + Codex）指南
 
-> 📘 **92 篇精修中文教程**，带你从装好到熟练 —— **Claude Code 53 篇 + Codex 39 篇**，把命令行变成你最快的那只手。
+> 📘 **92 篇 · 约 52 万字** 精修中文教程，带你从装好到熟练 —— **Claude Code 53 篇 + Codex 39 篇**，把命令行变成你最快的那只手。
 
+[![website](https://img.shields.io/badge/在线阅读-coding.stormzhang.ai-a6e3a1)](https://coding.stormzhang.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/stormzhang/ai-coding-guide?style=social)](https://github.com/stormzhang/ai-coding-guide/stargazers)
 [![Articles](https://img.shields.io/badge/articles-92-blue.svg)](#目录)
-[![Built with VitePress](https://img.shields.io/badge/Built%20with-VitePress-646cff.svg)](https://vitepress.dev)
+
+**📖 在线阅读（暗色终端风、体验更佳）→ <https://coding.stormzhang.ai>**
 
 ![AI 编程指南](og.png)
 
@@ -15,19 +16,19 @@
 - **面向小白做大量易懂化改写**：每个新概念三段式（场景引入 + 生活化类比 + 实际场景）；不熟命令行也能跟上。
 - **有真实经验印记**：每篇 3+ 处第一人称踩坑/判断（带具体细节、真实数字），不写「我觉得」式空话。
 - **可照跑、可自验**：每个动手环节给完整命令 + 预期输出，让你边读边动手即时反馈。
-- **暗色工程风原创配图**：64 张 SVG/PNG 配图，统一暗色风格、不堆字、节点 ≤ 10。
+- **暗色工程风原创配图**：81 张 SVG/PNG 配图，统一暗色风格、不堆字、节点 ≤ 10。
 
 ## 目录
 
 ### Claude Code 篇（53 篇）
 从「是什么 / 安装」到代理循环、MCP、子代理、Skill、Hooks、Agent SDK、GitHub Actions，再到最佳实践 / 反模式 / FAQ / 术语表。
 
-→ 从这里开始：[`claude-code/01-what-is-claude-code.md`](claude-code/01-what-is-claude-code.md)
+→ 从这里开始：[coding.stormzhang.ai](https://coding.stormzhang.ai)
 
 ### Codex 篇（39 篇）
 四种入口、AGENTS.md、沙箱审批、config.toml、Chronicle 记忆、Worktrees、从 Claude Code 迁移等。
 
-→ 从这里开始：[`codex/01-what-is-codex.md`](codex/01-what-is-codex.md)
+→ 从这里开始：[coding.stormzhang.ai](https://coding.stormzhang.ai)
 
 ## 怎么读
 
@@ -41,14 +42,9 @@
 | Q | A |
 |---|---|
 | **要付费吗？** | 教程本身 **完全免费**（MIT）。但 Claude Code / Codex 这两个工具本身需要订阅或 API 付费（订阅最便宜，每月 $20 起，详见各篇「订阅与计费」） |
-| **需要魔法上网吗？** | 安装、登录、使用都需要。教程里已标注每个工具的具体要求 |
 | **没用过命令行能学吗？** | 能。第一组「基础入门」专门照顾新手，从命令行基础带起 |
 | **Claude Code 和 Codex 学哪个？** | 看你常用什么模型。两个工具理念接近、各有所长。推荐先从 Claude Code 起步，再读 Codex 篇的「从 Claude Code 迁移」横向对比 |
 | **教程会更新吗？** | 这两个工具迭代很快，重要变化会跟进。版本信息见 [Commits](https://github.com/stormzhang/ai-coding-guide/commits/main) |
-
-## 技术栈
-
-教程站基于 **VitePress** 搭建，**Catppuccin Mocha** 暗色主题（仿 Claude Code CLI 会话窗口风格），代码块 Shiki 高亮，配图 SVG → @2x PNG，搜索 / mermaid / OG 卡片开箱即用。
 
 ## 贡献 / 反馈
 
