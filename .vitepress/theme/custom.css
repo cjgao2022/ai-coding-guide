@@ -1,0 +1,957 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap');
+
+/* ---- Catppuccin Latte (light) / Mocha (dark)-derived brand palette,
+   ported from the original site's compiled CSS variables ---- */
+:root {
+  --ctp-base: #eff1f5;
+  --ctp-mantle: #e6e9ef;
+  --ctp-crust: #dce0e8;
+  --ctp-surface0: #ccd0da;
+  --ctp-surface1: #bcc0cc;
+  --ctp-overlay0: #8c8fa1;
+  --ctp-text: #4c4f69;
+  --ctp-subtext1: #5c5f77;
+  --ctp-subtext0: #6c6f85;
+  --ctp-green: #40a02b;
+  --ctp-teal: #179299;
+  --ctp-blue: #1e66f5;
+  --ctp-mauve: #8839ef;
+  --ctp-peach: #fe640b;
+  --ctp-red: #d20f39;
+  --ctp-yellow: #df8e1d;
+
+  --brand-green: #40a02b;
+  --brand-accent-rgb: 64, 160, 43;
+
+  /* the terminal-styled code blocks always use the dark (Mocha) palette,
+     regardless of site light/dark mode */
+  --term-bg: #11111b;
+  --term-chrome: #181825;
+  --term-border: #313244;
+  --term-text: #cdd6f4;
+  --term-green: #a6e3a1;
+  --term-subtext: #a6adc8;
+
+  --ease-reveal: cubic-bezier(.16, 1, .3, 1);
+
+  --vp-font-family-base: 'Space Grotesk', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-body: 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  --font-display: 'Space Grotesk', 'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+
+  --vp-nav-bg-color: rgba(239, 241, 245, .78);
+  --vp-sidebar-bg-color: transparent;
+  --vp-layout-max-width: 1560px;
+  --vp-sidebar-width: 280px;
+
+  /* full VitePress base token remap to the Catppuccin Latte palette —
+     this drives page bg/text/divider/border colors everywhere, not just
+     the nav; ported 1:1 from the original site */
+  --vp-c-bg: #eff1f5;
+  --vp-c-bg-alt: #e6e9ef;
+  --vp-c-bg-elv: #e6e9ef;
+  --vp-c-bg-soft: #dce0e8;
+  --vp-c-text-1: #4c4f69;
+  --vp-c-text-2: #5c5f77;
+  --vp-c-text-3: #6c6f85;
+  --vp-c-divider: rgba(64, 160, 43, .15);
+  --vp-c-border: #ccd0da;
+  --vp-c-gutter: #dce0e8;
+  --vp-c-brand-1: #40a02b;
+  --vp-c-brand-2: #179299;
+  --vp-c-brand-3: #40a02b;
+  --vp-c-brand-soft: rgba(64, 160, 43, .12);
+  --vp-c-default-soft: rgba(64, 160, 43, .06);
+  --vp-code-block-bg: #11111b;
+}
+
+.dark {
+  --ctp-base: #1e1e2e;
+  --ctp-mantle: #181825;
+  --ctp-crust: #11111b;
+  --ctp-surface0: #313244;
+  --ctp-surface1: #45475a;
+  --ctp-overlay0: #6c7086;
+  --ctp-text: #cdd6f4;
+  --ctp-subtext1: #bac2de;
+  --ctp-subtext0: #a6adc8;
+  --ctp-green: #a6e3a1;
+  --ctp-teal: #94e2d5;
+  --ctp-blue: #89b4fa;
+  --ctp-mauve: #cba6f7;
+  --ctp-peach: #fab387;
+  --ctp-red: #f38ba8;
+  --ctp-yellow: #f9e2af;
+
+  --brand-green: #a6e3a1;
+  --brand-accent-rgb: 166, 227, 161;
+
+  --vp-nav-bg-color: rgba(24, 24, 37, .78);
+
+  --vp-c-bg: #1e1e2e;
+  --vp-c-bg-alt: #181825;
+  --vp-c-bg-elv: #181825;
+  --vp-c-bg-soft: #28283c;
+  --vp-c-text-1: #cdd6f4;
+  --vp-c-text-2: #bac2de;
+  --vp-c-text-3: #a6adc8;
+  --vp-c-divider: rgba(166, 227, 161, .12);
+  --vp-c-border: #313244;
+  --vp-c-gutter: #11111b;
+  --vp-c-brand-1: #a6e3a1;
+  --vp-c-brand-2: #94e2d5;
+  --vp-c-brand-3: #a6e3a1;
+  --vp-c-brand-soft: rgba(166, 227, 161, .12);
+  --vp-c-default-soft: rgba(166, 227, 161, .06);
+  --vp-code-block-bg: #11111b;
+}
+
+body {
+  font-family: var(--vp-font-family-base);
+}
+
+/* .hh-glow on the homepage uses width:100vw to bleed full-bleed, which
+   overflows past the real viewport width (100vw includes scrollbar width
+   in most browsers) and forces a horizontal scrollbar — clip it */
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* homepage uses its own in-hero nav (hh-nav) + progress bar makes no sense
+   without a nav; hide the default doc-site chrome there */
+.Layout:has(.VPPage) .VPNav {
+  display: none !important;
+}
+
+.Layout:has(.VPPage) .VPContent {
+  padding-top: 0 !important;
+}
+
+.Layout:has(.VPPage) .reading-progress {
+  display: none !important;
+}
+
+.VPNavBarTitle .title {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---- nav bar on doc pages: ported 1:1 from the original site's overrides.
+   Default theme pins the title to an absolutely-positioned, transparent
+   left column (width = sidebar width) while the menu/toggles column has
+   its own opaque background — reads as two separate boxes. Original
+   instead puts ONE blurred background on the whole bar and makes both
+   inner columns transparent, and un-pins the title back into normal
+   flex flow so it just sits at the left like a plain flex child. ---- */
+.Layout:has(.VPDoc) .VPNavBar {
+  background-color: var(--vp-nav-bg-color);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.VPNavBar.has-sidebar .title,
+.VPNavBar .content-body {
+  background-color: transparent !important;
+}
+
+/* these two are only active at >=1280px in the original — below that,
+   the title keeps the default absolute-positioned sidebar-width column.
+   Applying at 960px instead (same breakpoint has-sidebar itself kicks in)
+   so there's a single layout algorithm active at all normal desktop widths. */
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .title {
+    position: static !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: 28px !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* gradient site-title text */
+.VPNavBarTitle .title span {
+  background: linear-gradient(90deg, var(--brand-green), var(--ctp-teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+}
+
+/* ============ article content (.vp-doc) — ported from original ============ */
+
+.vp-doc {
+  font-size: 17px;
+  line-height: 1.85;
+  font-family: var(--font-body);
+}
+
+.vp-doc p {
+  margin: 0 0 22px;
+  color: var(--ctp-text);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  font-family: var(--font-display);
+}
+
+.vp-doc h1 {
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-bottom: 34px;
+}
+
+.vp-doc h2 {
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-top: 56px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.vp-doc h2:before {
+  content: "⏺";
+  color: var(--brand-green);
+  font-size: .62em;
+  vertical-align: .22em;
+  margin-right: .55em;
+}
+
+.vp-doc h3 {
+  font-weight: 700;
+}
+
+.vp-doc h3:before {
+  content: "⎿";
+  color: var(--ctp-overlay0);
+  font-family: var(--vp-font-family-mono);
+  margin-right: .5em;
+}
+
+.vp-doc strong {
+  color: #2f3145;
+}
+
+.dark .vp-doc strong {
+  color: #eef6ec;
+}
+
+.vp-doc em {
+  font-style: normal;
+  color: var(--ctp-subtext0);
+}
+
+.vp-doc a {
+  font-weight: 500;
+  color: var(--ctp-blue);
+}
+
+.vp-doc a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.vp-doc a[href^="http"]:not([href*="coding.stormzhang.ai"]):after {
+  content: "↗";
+  display: inline-block;
+  margin-left: 2px;
+  font-size: .82em;
+  color: var(--ctp-overlay0);
+  vertical-align: .05em;
+}
+
+.vp-doc a:has(> img):after {
+  content: none;
+}
+
+/* custom blockquote variants used in the article markdown */
+.vp-doc blockquote.series-nav {
+  border: 1px solid rgba(var(--brand-accent-rgb), .18);
+  border-radius: 12px;
+  background: var(--ctp-mantle);
+  padding: 12px 18px;
+  margin: 0 0 38px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 13.5px;
+}
+
+.vp-doc blockquote.series-nav p {
+  margin: 0;
+  color: var(--ctp-subtext0);
+}
+
+.vp-doc blockquote.series-nav p:before {
+  content: "> ";
+  color: var(--brand-green);
+}
+
+.vp-doc blockquote.series-nav strong {
+  color: var(--brand-green);
+  font-weight: 500;
+}
+
+.vp-doc blockquote.series-nav:before {
+  content: none;
+}
+
+.vp-doc p.analogy {
+  position: relative;
+  border-left: 3px solid var(--brand-green);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 20px 14px 46px;
+  margin: 0 0 26px;
+  background: linear-gradient(100deg, rgba(var(--brand-accent-rgb), .08), transparent 70%);
+  color: var(--ctp-text);
+}
+
+.vp-doc p.analogy:before {
+  content: "▸";
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  color: var(--brand-green);
+  font-family: var(--vp-font-family-mono);
+  font-size: 17px;
+}
+
+.vp-doc p.analogy strong {
+  color: var(--brand-green);
+}
+
+.vp-doc blockquote.takeaway {
+  border: 1px solid rgba(var(--brand-accent-rgb), .32);
+  border-radius: 13px;
+  padding: 14px 20px;
+  margin: 0 0 30px;
+  background: linear-gradient(120deg, rgba(var(--brand-accent-rgb), .12), transparent);
+}
+
+.vp-doc blockquote.takeaway p {
+  margin: 0;
+  color: #2c4a1c;
+  font-weight: 600;
+}
+
+.dark .vp-doc blockquote.takeaway p {
+  color: #eaf4e8;
+}
+
+.vp-doc blockquote.takeaway:before {
+  content: none;
+}
+
+.vp-doc blockquote.tip {
+  border-left: 3px solid var(--ctp-blue);
+  border-radius: 0 10px 10px 0;
+  background: #89b4fa0f;
+  padding: 12px 18px;
+  margin: 0 0 26px;
+}
+
+.vp-doc blockquote.tip p {
+  margin: 0;
+}
+
+.vp-doc p.promise-title {
+  margin: 0 0 -10px;
+  padding: 18px 22px 12px;
+  border: 1px solid rgba(var(--brand-accent-rgb), .22);
+  border-bottom: 0;
+  border-radius: 14px 14px 0 0;
+  background: var(--ctp-mantle);
+  font-weight: 700;
+  color: #2f3145;
+}
+
+.dark .vp-doc p.promise-title {
+  color: #eef6ec;
+}
+
+.vp-doc p.promise-title + ul {
+  margin: 0 0 30px;
+  padding: 4px 22px 18px 44px;
+  border: 1px solid rgba(var(--brand-accent-rgb), .22);
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+  background: var(--ctp-mantle);
+}
+
+.vp-doc blockquote:not(.series-nav):not(.takeaway):not(.tip) {
+  border-left: 3px solid var(--ctp-surface1);
+  padding-left: 20px;
+  color: var(--ctp-subtext0);
+}
+
+/* tables */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc tr {
+  background: transparent;
+  border: 0;
+}
+
+.vp-doc tr:nth-child(2n) {
+  background: rgba(var(--brand-accent-rgb), .03);
+}
+
+.vp-doc th {
+  background: rgba(var(--brand-accent-rgb), .1);
+  color: var(--brand-green);
+  font-family: var(--vp-font-family-mono);
+  font-size: 13px;
+  border: 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc td {
+  border: 0;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.vp-doc tr:last-child td {
+  border-bottom: 0;
+}
+
+.vp-doc .first-col-nowrap th:first-child,
+.vp-doc .first-col-nowrap td:first-child {
+  white-space: nowrap;
+}
+
+/* code blocks styled as little terminal windows */
+.vp-doc div[class*="language-"] {
+  position: relative;
+  border-radius: 13px;
+  border: 1px solid var(--term-border);
+  padding-top: 42px;
+}
+
+.vp-doc div[class*="language-"]:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background: var(--term-chrome);
+  border-bottom: 1px solid var(--term-border);
+  border-radius: 13px 13px 0 0;
+  z-index: 0;
+}
+
+.vp-doc div[class*="language-"]:after {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #f38ba8;
+  box-shadow: 18px 0 #f9e2af, 36px 0 #a6e3a1;
+  z-index: 1;
+}
+
+.vp-doc [class*="language-"] > span.lang {
+  top: 13px;
+  right: 16px;
+  color: var(--term-green);
+  opacity: .85;
+  z-index: 2;
+}
+
+.vp-doc [class*="language-"] > button.copy {
+  position: absolute;
+  top: 11px;
+  right: 56px;
+  z-index: 2;
+  width: auto !important;
+  height: 22px !important;
+  min-width: 0 !important;
+  padding: 0 10px !important;
+  background-image: none !important;
+  text-indent: 0 !important;
+  overflow: visible !important;
+  background: #11111b99 !important;
+  border: 1px solid var(--term-border) !important;
+  border-radius: 4px !important;
+  color: var(--term-subtext) !important;
+  font-family: var(--vp-font-family-mono);
+  font-size: 11px;
+  line-height: 20px;
+  letter-spacing: .02em;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+}
+
+.vp-doc [class*="language-"] > button.copy:before {
+  content: "复制";
+  background: none !important;
+  color: inherit !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  display: inline !important;
+  position: static !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  box-shadow: none !important;
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+
+.vp-doc [class*="language-"]:hover > button.copy,
+.vp-doc [class*="language-"] > button.copy:focus {
+  opacity: 1;
+}
+
+.vp-doc [class*="language-"] > button.copy:hover {
+  border-color: var(--term-green) !important;
+  color: var(--term-green) !important;
+}
+
+.vp-doc [class*="language-"] > button.copy.copied,
+.vp-doc [class*="language-"] > button.copy:active {
+  opacity: 1;
+  border-color: var(--term-green) !important;
+  color: var(--term-green) !important;
+  background: #a6e3a11f !important;
+}
+
+.vp-doc [class*="language-"] > button.copy.copied:before {
+  content: "已复制";
+}
+
+.vp-doc [class*="language-"] > button.copy + span.copied {
+  display: none !important;
+}
+
+.vp-doc [class*="language-"] > pre {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+}
+
+.vp-doc :not(pre) > code {
+  color: var(--ctp-peach);
+}
+
+.vp-doc img {
+  max-width: 100%;
+  height: auto;
+  cursor: zoom-in;
+  border-radius: 14px;
+  border: 1px solid var(--ctp-surface0);
+  box-shadow: 0 18px 50px -28px #0009;
+}
+
+/* ============ reading progress bar ============ */
+.reading-progress {
+  position: fixed;
+  top: calc(var(--vp-nav-height) - 1px);
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 100;
+  pointer-events: none;
+  background: transparent;
+}
+
+.reading-progress .bar {
+  height: 100%;
+  background: var(--brand-green);
+  transition: width .1s linear;
+}
+
+/* ============ focus reading toggle ============ */
+.reading-toggle {
+  position: fixed;
+  right: 22px;
+  bottom: 92px;
+  z-index: 60;
+  font-family: var(--vp-font-family-mono);
+  font-size: 12.5px;
+  color: var(--ctp-subtext1);
+  background: var(--ctp-mantle);
+  border: 1px solid var(--ctp-surface0);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: .2s;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.reading-toggle:hover {
+  border-color: var(--brand-green);
+  color: var(--brand-green);
+}
+
+.reading-toggle.active {
+  color: #fff;
+  background: var(--brand-green);
+  border-color: var(--brand-green);
+}
+
+.dark .reading-toggle.active {
+  color: #1e1e2e;
+}
+
+@media (max-width: 767px) {
+  .reading-toggle {
+    display: none !important;
+  }
+}
+
+/* focus reading mode: widen content, hide sidebar/outline/hamburger */
+html.reading-mode .VPSidebar {
+  display: none !important;
+}
+
+html.reading-mode .VPContent.has-sidebar {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+html.reading-mode .VPDoc .aside,
+html.reading-mode .VPNavBar .VPNavBarHamburger {
+  display: none !important;
+}
+
+html.reading-mode .VPDoc {
+  padding-left: 96px !important;
+  padding-right: 96px !important;
+}
+
+html.reading-mode .VPDoc .container {
+  max-width: 1280px !important;
+  margin: 0 auto !important;
+}
+
+html.reading-mode .VPDoc .content {
+  max-width: 100% !important;
+  padding: 0 0 128px !important;
+}
+
+html.reading-mode .VPDoc.has-aside .content-container {
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+
+/* ============ back to top ============ */
+.back-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 36px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: #11111beb;
+  border: 1px solid var(--term-border);
+  border-radius: 6px;
+  color: var(--term-subtext);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 14px #00000047;
+  transition: border-color .18s ease, color .18s ease, transform .18s ease;
+}
+
+.back-to-top:hover {
+  border-color: var(--term-green);
+  color: var(--term-green);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 767px) {
+  .back-to-top {
+    right: 16px;
+    bottom: 20px;
+    padding: 7px 10px;
+    font-size: 11px;
+  }
+}
+
+.btt-enter-active,
+.btt-leave-active {
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.btt-enter-from,
+.btt-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* widen the right outline column: 224/256px default -> 260px */
+.Layout .VPDoc .aside {
+  max-width: 260px !important;
+  padding-right: 28px !important;
+}
+
+.Layout .aside-container,
+.Layout .aside-curtain {
+  width: 260px !important;
+}
+
+.Layout .aside-content {
+  padding-right: 16px;
+}
+
+/* ============ left sidebar (chapter tree) — terminal-esque tree lines ============ */
+.Layout .VPSidebar {
+  font-family: var(--vp-font-family-mono);
+}
+
+.Layout .VPSidebarItem.level-0 > .item .text {
+  font-size: 14px !important;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: var(--ctp-subtext0) !important;
+}
+
+.Layout .VPSidebarItem.level-0 > .items {
+  padding-left: 8px;
+  overflow: hidden;
+  max-height: 600px;
+  opacity: 1;
+  transition: max-height .3s var(--ease-reveal), opacity .24s ease;
+}
+
+.Layout .VPSidebarItem.collapsed.level-0 > .items {
+  display: block !important;
+  max-height: 0;
+  opacity: 0;
+}
+
+.Layout .VPSidebarItem.level-1 > .item {
+  position: relative;
+}
+
+.Layout .VPSidebarItem.level-1 > .item:before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ctp-surface1);
+}
+
+.Layout .VPSidebarItem.level-1 > .item:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 15px;
+  width: 9px;
+  height: 1px;
+  background: var(--ctp-surface1);
+}
+
+.Layout .VPSidebarItem.level-0 > .items > .VPSidebarItem:last-child > .item:before {
+  bottom: auto;
+  height: 15px;
+}
+
+.Layout .VPSidebarItem.level-1 .link .text {
+  padding-left: 18px;
+  font-size: 13.5px !important;
+  color: var(--ctp-subtext1) !important;
+}
+
+.Layout .VPSidebarItem .link:hover .text {
+  color: var(--brand-green) !important;
+}
+
+.Layout .VPSidebarItem.is-active > .item .link .text {
+  color: var(--brand-green) !important;
+  font-weight: 600;
+}
+
+.Layout .VPSidebarItem.is-active > .item:before,
+.Layout .VPSidebarItem.is-active > .item:after {
+  background: var(--brand-green);
+}
+
+.Layout .VPSidebar .indicator {
+  display: none !important;
+}
+
+/* ============ right outline (本页目录) — ⏺/⎿ markers + active glow bar ============ */
+.Layout .outline-link {
+  position: relative;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  white-space: normal;
+  overflow: hidden;
+  line-height: 20px;
+  padding-top: 4px;
+  padding-bottom: 0;
+  margin-left: -16px;
+  margin-bottom: 11px;
+  padding-left: 26px;
+  color: var(--ctp-subtext1) !important;
+  transition: color .15s;
+}
+
+.Layout .nested .outline-link {
+  margin-left: -32px;
+  padding-left: 46px;
+}
+
+.Layout .outline-link:hover {
+  color: var(--brand-green) !important;
+}
+
+.Layout .outline-link.active {
+  color: var(--brand-green) !important;
+  font-weight: 500;
+}
+
+.Layout .VPDocAsideOutline .root > li > .outline-link:before {
+  content: "⏺";
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  font-size: .6em;
+  color: var(--ctp-overlay0);
+  transition: color .2s;
+}
+
+.Layout .VPDocAsideOutline .nested .outline-link:before {
+  content: "⎿";
+  position: absolute;
+  left: 27px;
+  top: 5px;
+  font-family: var(--vp-font-family-mono);
+  font-size: .9em;
+  color: var(--ctp-overlay0);
+  transition: color .2s;
+}
+
+.Layout .VPDocAsideOutline .root > li > .outline-link.active:before,
+.Layout .VPDocAsideOutline .nested .outline-link.active:before {
+  color: var(--brand-green);
+}
+
+.Layout .VPDocAsideOutline .outline-marker {
+  display: none !important;
+}
+
+.Layout .VPDocAsideOutline .root li {
+  position: relative;
+}
+
+.Layout .VPDocAsideOutline .root > li:has(> .outline-link.active):after,
+.Layout .VPDocAsideOutline .nested > li:has(> .outline-link.active):after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  width: 1px;
+  background: var(--brand-green);
+  box-shadow: 0 0 6px rgba(var(--brand-accent-rgb), .5);
+}
+
+.Layout .VPDocAsideOutline .root > li:has(> .outline-link.active):after {
+  left: -13px;
+}
+
+.Layout .VPDocAsideOutline .nested > li:has(> .outline-link.active):after {
+  left: -29px;
+}
+
+/* widen the article text column itself (default 688px) */
+.VPDoc.has-aside .content-container {
+  max-width: 860px !important;
+}
+
+/* ============ mac-terminal titlebar + frame wrapping the whole article ============ */
+.cc-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 56px;
+  padding: 0 24px;
+  margin: 0 -32px 0;
+  border: 1px solid var(--ctp-surface0);
+  border-bottom: 0;
+  border-radius: 12px 12px 0 0;
+  background: var(--ctp-mantle);
+  font-family: var(--vp-font-family-mono);
+  font-size: 12.5px;
+}
+
+.VPDoc .main {
+  border: 1px solid var(--ctp-surface0);
+  border-top: 0;
+  border-radius: 0 0 12px 12px;
+  margin: 0 -32px 24px;
+  padding: 24px 32px;
+  background: #fff;
+}
+
+/* keep the prev/next pager aligned with the frame's (now wider) edges */
+.VPDoc .prev-next {
+  margin: 24px -32px 0;
+}
+
+/* when only one of prev/next exists, its box normally sits confined to its
+   own 50% grid column (left half or right half) — stretch it to the full
+   width instead so it still spans the same edges as the frame above */
+.VPDoc .prev-next:has(.pager:empty) .pager:not(:empty) {
+  grid-column: 1 / -1;
+}
+
+.dark .VPDoc .main {
+  background: var(--ctp-mantle);
+}
+
+.cc-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cc-dot.r { background: var(--ctp-red); }
+.cc-dot.y { background: var(--ctp-yellow); }
+.cc-dot.g { background: var(--ctp-green); }
+
+.cc-title {
+  margin-left: 10px;
+  color: var(--ctp-subtext0);
+}
+
+.cc-title b {
+  color: var(--brand-green);
+  font-weight: 500;
+}
+
+.cc-meta {
+  margin-left: auto;
+  color: var(--ctp-overlay0);
+}
