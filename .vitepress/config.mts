@@ -147,7 +147,8 @@ export default defineConfig({
             { text: '50 · 反模式：常见的错误用法', link: '/claude-code/50-anti-patterns' },
             { text: '51 · 常见问题排查（FAQ / Troubleshooting）', link: '/claude-code/51-troubleshooting' },
             { text: '52 · 术语表（小白友好）：把这一路的「黑话」一次性翻译成人话', link: '/claude-code/52-glossary' },
-            { text: '53 · 制作视频（Remotion）〔选读〕', link: '/claude-code/53-remotion-video' }
+            { text: '53 · 制作视频（Remotion）〔选读〕', link: '/claude-code/53-remotion-video' },
+            { text: '54 · 速查手册（QuickStart）', link: '/claude-code/54-quickstart' }
           ]
         }
       ],
@@ -230,7 +231,8 @@ export default defineConfig({
             { text: '36 · 最佳实践：那些「正确的废话」之外，真正能落地的几条', link: '/codex/36-best-practices' },
             { text: '37 · 常见问题排查：装不上、登不了、不肯改文件，挨个拆', link: '/codex/37-faq' },
             { text: '38 · 术语表', link: '/codex/38-glossary' },
-            { text: '39 · 企业管理与治理：一个人玩和一家公司用，是两件事', link: '/codex/39-enterprise' }
+            { text: '39 · 企业管理与治理：一个人玩和一家公司用，是两件事', link: '/codex/39-enterprise' },
+            { text: '40 · 速查手册（QuickStart）', link: '/codex/40-quickstart' }
           ]
         }
       ]
